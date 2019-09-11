@@ -37,6 +37,7 @@ color:white;
        margin: 0px 20px;
         color: #ffffff;  
         border-bottom: 2px solid transparent; 
+        text-decoration: none;
        
    }
    main{
@@ -81,5 +82,5 @@ footer{
     }
 a:hover{
     
-    border: white;
+    text-decoration:underline;
 }
