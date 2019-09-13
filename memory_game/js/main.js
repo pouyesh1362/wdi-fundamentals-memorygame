@@ -17,9 +17,9 @@ console.log("user Flipped " + cardFour);
 var cards = [
 
     {
-rank: "queen",
-suit: "hearts",
-cardImage: "images/queen-of-hearts.png"
+        rank: "queen",
+        suit: "hearts",
+        cardImage: "images/queen-of-hearts.png"
     },
     {
         rank: "queen",
@@ -40,20 +40,24 @@ cardImage: "images/queen-of-hearts.png"
 
 var cardsInPlay = [];
 
-function checkForMatch(){
+// function checkForMatch(cardId){
+//     setAttribute( 'src' , cards[cardId].cardImage);
+//     if (cardsInPlay.length === 2 && cardsInPlay[0] === cardsInPlay[1]) {
+//         console.log("You found a match!");
+//       } else{
+//         console.log("Sorry, try again.");
+//       }
 
-    if (cardsInPlay[0] === cardsInPlay[1]) {
-        console.log("You found a match!");
-      } else {
-        console.log("Sorry, try again.");
-      }
+// }
 
-}
-
-function flipCard(cardId){
-
+function flipCard(){
+    var cardId = this.getAttribute('data-id');
     cardsInPlay.push(cards[cardId]);
+
+
     //cardsInPlay.push(cards[cardId]);
+
+
     // if(cardsInPlay.length === 2 && cardsInPlay[0] === cardsInPlay[1]){
 
     //     alert("You found a match!");
@@ -61,15 +65,27 @@ function flipCard(cardId){
     //     alert("Sorry, try again!");
     // };
     //console.log("User filpped " + cards[cardId]);
+
+
     console.log("User filpped " + cards[cardId].rank);
     console.log("User filpped " + cards[cardId].suit);
     console.log("User filpped " + cards[cardId].cardImage);
-    checkForMatch();
+    //checkForMatch();
+
+
+    this.setAttribute( 'src' , cards[cardId].cardImage);
+    if (cardsInPlay.length === 2 && cardsInPlay[0].rank === cardsInPlay[1].rank) {
+        alert("You found a match!");
+      } else if(cardsInPlay.length > 1){
+        alert("Sorry, try again.");
+      }
+
+
 }
 
 // cardsInPlay.push(cards[cardId]);
-flipCard(0);
-flipCard(2);
+// flipCard(0);
+// flipCard(2);
 
 
 // var cardOne = cards[0]; 
@@ -82,3 +98,27 @@ var cardFour = cards[3];
 // cardsInPlay.push(cardOne);
 // cardsInPlay.push(cardTwo);
 //console.log("User flipped " + cardsInPlay);
+
+function createBoard()
+{
+    var k = cards.length;
+    for(var i = 0 ; i < k ; i++)
+    {
+var cardElement= document.createElement('img');
+cardElement.setAttribute('src','images/back.png');
+ 
+cardElement.setAttribute("data-id" , i);
+cardElement.addEventListener("click" , flipCard);
+
+document.getElementById('game-board').appendChild(cardElement);
+
+
+// // cardElement.setAttribute("")
+// // cardElement.addEventListener('click' , flipCard);
+// // cardElement.geteleElementById("game-board").appendChild(cardElement);
+
+    }
+
+} 
+
+createBoard();
